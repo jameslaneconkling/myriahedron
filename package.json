@@ -1,17 +1,24 @@
 {
   "name": "myriahedrial-grid",
   "version": "0.0.1",
-  "description": "generate a myriahedral grid of arbitrary depth",
+  "description": "generate a myriahedral geohash of arbitrary depth",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "lint": "eslint lib/"
+    "lint": "eslint ./",
+    "dev": "budo client/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "budo": "^10.0.4",
     "eslint": "^4.9.0"
+  },
+  "dependencies": {
+    "d3-geo-projection": "^2.3.1",
+    "topojson-client": "^3.0.0",
+    "world-atlas": "^1.1.4"
   }
 }
