@@ -1,0 +1,17 @@
+{
+  "name": "myriahedrial-grid",
+  "version": "0.0.1",
+  "description": "generate a myriahedral grid of arbitrary depth",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint lib/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.9.0"
+  }
+}
