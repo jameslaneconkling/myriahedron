@@ -5,12 +5,12 @@ const {
   geoProjectionMutator
 } = require('d3-geo');
 const {
-  mesh
+  mesh,
+  feature
 } = require('topojson');
 const world = require('../node_modules/world-atlas/world/110m.json');
 const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
 // const myriahedronTopology1_2_5 = require('../data/myriahedron-topology-1-2-5.json');
-// const myriahedronTopologyLandcover6 = require('../data/myriahedron-landcover-topology-6.json');
 const width = 1000;
 const height = 1000;
 
@@ -19,7 +19,6 @@ root.setAttribute('style', 'position: absolute; top: 0; bottom: 0; left: 0; righ
 const canvas = root.appendChild(document.createElement('canvas'));
 canvas.setAttribute('style', `width: ${width / 2}px; height: ${height / 2}px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);`);
 const projection = geoOrthographic().translate([250, 250]);
-// const projection2 = geoOrthographic().translate([250, 250]);
 const projection2 = geoProjectionMutator(
   () => (x, y) => geoOrthographicRaw(-x, y)
 )()
@@ -28,6 +27,18 @@ const projection2 = geoProjectionMutator(
   .translate([250, 250]);
 canvas.width = width;
 canvas.height = height;
+
+
+/**
+ * context
+ * {
+ *   beginPath()
+ *   moveTo(x, y)
+ *   lineTo(x, y)
+ *   arc(x, y, radius, startAngle, endAngle)
+ *   closePath()
+ * }
+ */
 const context = canvas.getContext('2d');
 context.scale(2,2);
 
@@ -54,20 +65,18 @@ const draw = (projection, projection2) => {
 
   context.beginPath();
   context.lineWidth = 0.5;
-  context.strokeStyle = '#aaa';
-  path2(mesh(world, world.objects.land));
+  context.strokeStyle = '#bbb';
+  context.fillStyle = 'rgba(200,200,200,0.1)';
+  path2(feature(world, world.objects.land));
+  context.fill();
   context.stroke();
 
-  // context.beginPath();
-  // context.lineWidth = 0.5;
-  // context.strokeStyle = '#eaeaea';
-  // path2(mesh(myriahedronTopology5));
-  // context.stroke();
-
   context.beginPath();
-  context.lineWidth = 1;
-  context.strokeStyle = '#aaa';
-  path(mesh(world, world.objects.land));
+  context.lineWidth = 0.5;
+  context.strokeStyle = '#999';
+  context.fillStyle = 'rgba(50,50,50,0.1)';
+  path(feature(world, world.objects.land));
+  context.fill();
   context.stroke();
 
   context.beginPath();
@@ -75,13 +84,6 @@ const draw = (projection, projection2) => {
   context.strokeStyle = '#bbb';
   path(mesh(myriahedronTopology5));
   context.stroke();
-
-
-  // context.beginPath();
-  // context.lineWidth = 0.8;
-  // context.strokeStyle = '999';
-  // path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['1']));
-  // context.stroke();
 };
 
 let lat = 180;
