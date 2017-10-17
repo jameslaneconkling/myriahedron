@@ -1,6 +1,8 @@
 const {
   geoPath,
-  geoOrthographic
+  geoOrthographic,
+  geoOrthographicRaw,
+  geoProjectionMutator
 } = require('d3-geo');
 const {
   mesh
@@ -17,6 +19,13 @@ root.setAttribute('style', 'position: absolute; top: 0; bottom: 0; left: 0; righ
 const canvas = root.appendChild(document.createElement('canvas'));
 canvas.setAttribute('style', `width: ${width / 2}px; height: ${height / 2}px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);`);
 const projection = geoOrthographic().translate([250, 250]);
+// const projection2 = geoOrthographic().translate([250, 250]);
+const projection2 = geoProjectionMutator(
+  () => (x, y) => geoOrthographicRaw(-x, y)
+)()
+  .scale(249.5)
+  .clipAngle(90 + 1e-6)
+  .translate([250, 250]);
 canvas.width = width;
 canvas.height = height;
 const context = canvas.getContext('2d');
@@ -38,21 +47,35 @@ document.onmousemove = ({ pageY }) => {
 };
 
 
-const draw = (projection) => {
+const draw = (projection, projection2) => {
   const path = geoPath(projection, context);
+  const path2 = geoPath(projection2, context);
   context.clearRect(0, 0, width, height);
 
   context.beginPath();
-  context.lineWidth = 0.8;
-  context.strokeStyle = '#999';
+  context.lineWidth = 0.5;
+  context.strokeStyle = '#aaa';
+  path2(mesh(world, world.objects.land));
+  context.stroke();
+
+  // context.beginPath();
+  // context.lineWidth = 0.5;
+  // context.strokeStyle = '#eaeaea';
+  // path2(mesh(myriahedronTopology5));
+  // context.stroke();
+
+  context.beginPath();
+  context.lineWidth = 1;
+  context.strokeStyle = '#aaa';
   path(mesh(world, world.objects.land));
   context.stroke();
 
   context.beginPath();
   context.lineWidth = 0.5;
-  context.strokeStyle = '#aaa';
+  context.strokeStyle = '#bbb';
   path(mesh(myriahedronTopology5));
   context.stroke();
+
 
   // context.beginPath();
   // context.lineWidth = 0.8;
@@ -61,6 +84,11 @@ const draw = (projection) => {
   // context.stroke();
 };
 
+let lat = 180;
 setInterval(() => {
-  draw(projection.rotate([Date.now() / 80, mouseYPercent ? (80 * mouseYPercent) - 40 : -20]));
+  lat += 1;
+  draw(
+    projection.rotate([lat, mouseYPercent ? (80 * mouseYPercent) - 40 : -20]),
+    projection2.rotate([lat + 180, mouseYPercent ? (-80 * mouseYPercent) + 40 : 20])
+  );
 }, 0);
