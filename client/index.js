@@ -5,13 +5,10 @@ const {
 const {
   mesh
 } = require('topojson');
-// const world = require('../node_modules/world-atlas/world/110m.json');
-// const myriahedron1 = require('../data/myriahedron-1.json');
-// const myriahedron2 = require('../data/myriahedron-2.json');
-// const myriahedron4 = require('../data/myriahedron-4.json');
-// const myriahedron5 = require('../data/myriahedron-5.json');
-// const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
-const myriahedronTopology1_2_5 = require('../data/myriahedron-topology-1-2-5.json');
+const world = require('../node_modules/world-atlas/world/110m.json');
+const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
+// const myriahedronTopology1_2_5 = require('../data/myriahedron-topology-1-2-5.json');
+// const myriahedronTopologyLandcover6 = require('../data/myriahedron-landcover-topology-6.json');
 const width = 1000;
 const height = 500;
 
@@ -29,23 +26,23 @@ const draw = (projection) => {
   const path = geoPath(projection, context);
   context.clearRect(0, 0, width, height);
 
+  context.beginPath();
+  context.lineWidth = 0.8;
+  context.strokeStyle = '#999';
+  path(mesh(world, world.objects.land));
+  context.stroke();
+
   // context.beginPath();
-  // context.lineWidth = 1;
+  // context.lineWidth = 0.5;
   // context.strokeStyle = '#aaa';
-  // path(mesh(world));
+  // path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['5']));
   // context.stroke();
 
   context.beginPath();
   context.lineWidth = 0.5;
   context.strokeStyle = '#aaa';
-  path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['5']));
+  path(mesh(myriahedronTopology5));
   context.stroke();
-
-  // context.beginPath();
-  // context.lineWidth = 1;
-  // context.strokeStyle = '#aaa';
-  // path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['1']));
-  // context.stroke();
 };
 
 setInterval(() => {
