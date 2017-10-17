@@ -8,11 +8,13 @@
   },
   "scripts": {
     "lint": "eslint ./",
-    "dev": "budo client/index.js"
+    "dev": "budo client/index.js",
+    "build": "browserify client/index.js > docs/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^14.4.0",
     "budo": "^10.0.4",
     "eslint": "^4.9.0"
   },
