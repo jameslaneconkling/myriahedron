@@ -2,7 +2,7 @@ const fs = require('fs');
 const icosahedron2Myriahedron = require('./lib/icosahedron2Myriahedron');
 
 
-const depth = parseInt(process.argv[2]);
+const depth = parseInt(process.argv[2], 10);
 if (isNaN(depth) || depth < 1) {
   console.error('second depth argument must be an integer >= 1');
   process.exit(1);
