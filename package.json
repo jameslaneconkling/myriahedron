@@ -1,7 +1,7 @@
 {
-  "name": "myriahedrial-grid",
+  "name": "myriahedron",
   "version": "0.1.2",
-  "description": "generate a myriahedral geohash of arbitrary depth",
+  "description": "generate a spatial myriahedron of arbitrary depth",
   "main": "index.js",
   "directories": {
     "lib": "lib"
