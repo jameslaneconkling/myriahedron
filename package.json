@@ -1,6 +1,6 @@
 {
   "name": "myriahedrial-grid",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "generate a myriahedral geohash of arbitrary depth",
   "main": "index.js",
   "directories": {
