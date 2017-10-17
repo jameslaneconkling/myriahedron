@@ -10,16 +10,17 @@ const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
 // const myriahedronTopology1_2_5 = require('../data/myriahedron-topology-1-2-5.json');
 // const myriahedronTopologyLandcover6 = require('../data/myriahedron-landcover-topology-6.json');
 const width = 1000;
-const height = 500;
+const height = 1000;
 
 const root = document.body.appendChild(document.createElement('div'));
 root.setAttribute('style', 'position: absolute; top: 0; bottom: 0; left: 0; right: 0');
 const canvas = root.appendChild(document.createElement('canvas'));
-canvas.setAttribute('style', 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)');
-const projection = geoOrthographic();
+canvas.setAttribute('style', `width: ${width / 2}px; height: ${height / 2}px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)`);
+const projection = geoOrthographic().translate([250, 250]);
 canvas.width = width;
 canvas.height = height;
 const context = canvas.getContext('2d');
+context.scale(2,2);
 
 
 const draw = (projection) => {
@@ -32,17 +33,17 @@ const draw = (projection) => {
   path(mesh(world, world.objects.land));
   context.stroke();
 
-  // context.beginPath();
-  // context.lineWidth = 0.5;
-  // context.strokeStyle = '#aaa';
-  // path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['5']));
-  // context.stroke();
-
   context.beginPath();
   context.lineWidth = 0.5;
   context.strokeStyle = '#aaa';
   path(mesh(myriahedronTopology5));
   context.stroke();
+
+  // context.beginPath();
+  // context.lineWidth = 0.5;
+  // context.strokeStyle = '#aaa';
+  // path(mesh(myriahedronTopology1_2_5, myriahedronTopology1_2_5.objects['5']));
+  // context.stroke();
 };
 
 setInterval(() => {
