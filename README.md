@@ -4,7 +4,7 @@ Tools for projecting spatial data onto a Myriahedron.
 
 ![thumb](./thumb.png)
 
-Buckminster Fuller's [Dymaxion map](https://en.wikipedia.org/wiki/Dymaxion_map) is a famous example of a projection that manages to preserve area and shape by projecting the globe onto the surface of an icosahedron.  By dividing the globe into 20 equal-area triangles, it also succeeds in being the basis for an effective binning strategy to visualize large datasets.  Recursively subdividing each of the 20 original triangles produces a [myriahedron](https://www.win.tue.nl/~vanwijk/myriahedral/), or a triagle-based grid of arbitrary precision (and incidentally produces something similar to a [geodesic dome](https://en.wikipedia.org/wiki/Geodesic_dome), another of Buckminster Fuller's projects).
+Buckminster Fuller's [Dymaxion map](https://en.wikipedia.org/wiki/Dymaxion_map) is a famous example of a projection that manages to preserve area and shape by projecting the globe onto the surface of an icosahedron.  By dividing the globe into 20 equal-area triangles, it also succeeds in being the basis for an effective binning strategy to visualize large datasets.  Recursively subdividing each of the 20 original triangles produces a [geodesic polyhedron](https://en.wikipedia.org/wiki/Geodesic_polyhedron) or [myriahedron](https://www.win.tue.nl/~vanwijk/myriahedral/), or a triagle-based grid of arbitrary precision (and incidentally produces something similar to a [geodesic dome](https://en.wikipedia.org/wiki/Geodesic_dome), another of Buckminster Fuller's projects).
 
 Because each triangle is equal in area to all other triangles of the same depth, myriahedral grids have an obvious benefit over square grids, which become distorted as they near the poles.  Despite this distortion, aggregating datasets to a square bin is more computationally efficient, leading to a trade off between accuracy and efficiency
 
@@ -26,3 +26,11 @@ To generate a topoJSON topology of multiple myriadrons at different depths
 ```bash
 node lib/topojsonize <myriahedron-1> [<myriahedron-2> ...]
 ```
+
+### See Also
+* [Myriahedral Projection](https://www.win.tue.nl/~vanwijk/myriahedral/)
+* [Yin-Yang Grid](http://www.mpa-garching.mpg.de/184309/Yin-Yang)
+* [Quad Sphere](https://en.wikipedia.org/wiki/Quadrilateralized_spherical_cube)
+* [Spherical Geodesic Grids](http://kiwi.atmos.colostate.edu/BUGS/geodesic/)
+* [Variable-Size Grids](http://mpas-dev.github.io/)
+* [Generate Icosahedron Points on Globe](http://montalk.net/coordinates.htm)
