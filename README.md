@@ -1,3 +1,28 @@
-# Myriahedral Projection
+# Myriahedron
+
+Tools for projecting spatial data onto a Myriahedron.
 
 ![thumb](./thumb.png)
+
+Buckminster Fuller's [Dymaxion map](https://en.wikipedia.org/wiki/Dymaxion_map) is a famous example of a projection that manages to preserve area and shape by projecting the globe onto the surface of an icosahedron.  By dividing the globe into 20 equal-area triangles, it also succeeds in being the basis for an effective binning strategy to visualize large datasets.  Recursively subdividing each of the 20 original triangles produces a [myriahedron](https://www.win.tue.nl/~vanwijk/myriahedral/), or a triagle-based grid of arbitrary precision (and incidentally produces something similar to a [geodesic dome](https://en.wikipedia.org/wiki/Geodesic_dome), another of Buckminster Fuller's projects).
+
+Because each triangle is equal in area to all other triangles of the same depth, myriahedral grids have an obvious benefit over square grids, which become distorted as they near the poles.  Despite this distortion, aggregating datasets to a square bin is more computationally efficient, leading to a trade off between accuracy and efficiency
+
+
+To generate a geoJSON myriahedron of depth `<n>`
+
+```bash
+node cli.js <n> ./data/myriahedron-1.json
+```
+
+To generate a topoJSON myriahedron of depth `<n>`, pipe the output to [`geo2topo`](https://github.com/topojson/topojson-server/blob/master/README.md#geo2topo)
+
+```bash
+node cli.js <n> ./data/myriahedron-1.json | geo2topo
+```
+
+To generate a topoJSON topology of multiple myriadrons at different depths
+
+```bash
+node lib/topojsonize <myriahedron-1> [<myriahedron-2> ...]
+```
