@@ -12,16 +12,16 @@ Because each triangle is equal in area to all other triangles of the same depth,
 To generate a geoJSON myriahedron of depth `<n>`
 
 ```bash
-node cli.js <n> ./data/myriahedron-1.json
+node myriahedron.js <n> ./data/myriahedron-1.json
 ```
 
 To generate a topoJSON myriahedron of depth `<n>`, pipe the output to [`geo2topo`](https://github.com/topojson/topojson-server/blob/master/README.md#geo2topo)
 
 ```bash
-node cli.js <n> ./data/myriahedron-1.json | geo2topo
+node myriahedron.js <n> ./data/myriahedron-1.json | geo2topo
 ```
 
-To generate a topoJSON topology of multiple myriadrons at different depths
+To generate a topoJSON topology of multiple myriadrons of differing depths
 
 ```bash
 node lib/topojsonize <myriahedron-1> [<myriahedron-2> ...]
