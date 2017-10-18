@@ -10,6 +10,8 @@ const {
 } = require('topojson');
 const world = require('../node_modules/world-atlas/world/110m.json');
 const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
+const landFeature = feature(world, world.objects.land);
+const myriahedronMesh = mesh(myriahedronTopology5);
 const width = 1000;
 const height = 1000;
 
@@ -57,16 +59,24 @@ document.onmousemove = ({ pageY }) => {
 };
 
 
-const draw = (projection, projection2) => {
-  const path = geoPath(projection, context);
-  const path2 = geoPath(projection2, context);
+let lat = 180;
+const draw = () => {
+  lat += 1;
+  const path = geoPath(
+    projection.rotate([lat, mouseYPercent ? (80 * mouseYPercent) - 40 : -20]),
+    context
+  );
+  const path2 = geoPath(
+    projection2.rotate([lat + 180, mouseYPercent ? (-80 * mouseYPercent) + 40 : 20]),
+    context
+  );
   context.clearRect(0, 0, width, height);
 
   context.beginPath();
   context.lineWidth = 0.5;
   context.strokeStyle = '#bbb';
   context.fillStyle = 'rgba(200,200,200,0.1)';
-  path2(feature(world, world.objects.land));
+  path2(landFeature);
   context.fill();
   context.stroke();
 
@@ -74,22 +84,19 @@ const draw = (projection, projection2) => {
   context.lineWidth = 0.5;
   context.strokeStyle = '#999';
   context.fillStyle = 'rgba(50,50,50,0.1)';
-  path(feature(world, world.objects.land));
+  path(landFeature);
   context.fill();
   context.stroke();
 
   context.beginPath();
   context.lineWidth = 0.5;
   context.strokeStyle = '#bbb';
-  path(mesh(myriahedronTopology5));
+  path(myriahedronMesh);
   context.stroke();
+
+  // recurse
+  setTimeout(() => requestAnimationFrame(draw), 10);
 };
 
-let lat = 180;
-setInterval(() => {
-  lat += 1;
-  draw(
-    projection.rotate([lat, mouseYPercent ? (80 * mouseYPercent) - 40 : -20]),
-    projection2.rotate([lat + 180, mouseYPercent ? (-80 * mouseYPercent) + 40 : 20])
-  );
-}, 0);
+
+requestAnimationFrame(draw);
