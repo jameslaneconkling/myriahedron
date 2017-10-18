@@ -10,7 +10,6 @@ const {
 } = require('topojson');
 const world = require('../node_modules/world-atlas/world/110m.json');
 const myriahedronTopology5 = require('../data/myriahedron-topology-5.json');
-// const myriahedronTopology1_2_5 = require('../data/myriahedron-topology-1-2-5.json');
 const width = 1000;
 const height = 1000;
 
