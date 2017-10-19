@@ -8,6 +8,7 @@
   },
   "scripts": {
     "lint": "eslint ./",
+    "test": "node test/",
     "dev": "budo client/index.js",
     "build": "browserify client/index.js > docs/index.js"
   },
@@ -16,13 +17,16 @@
   "devDependencies": {
     "browserify": "^14.4.0",
     "budo": "^10.0.4",
-    "eslint": "^4.9.0"
+    "concat-stream": "^1.6.0",
+    "eslint": "^4.9.0",
+    "tape": "^4.8.0"
   },
   "dependencies": {
     "@turf/boolean-contains": "^4.7.3",
     "@turf/boolean-disjoint": "^4.7.3",
     "@turf/combine": "^4.7.3",
     "d3-geo-projection": "^2.3.1",
+    "geojson-stream": "0.0.1",
     "topojson": "^3.0.2",
     "world-atlas": "^1.1.4"
   }
