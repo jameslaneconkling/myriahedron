@@ -1,4 +1,5 @@
 const fs = require('fs');
+const JSONStream = require('JSONStream');
 const subdivideMyriahedron = require('./lib/subdivideMyriahedron');
 
 
@@ -8,7 +9,6 @@ if (isNaN(depth) || depth < 1) {
   process.exit(1);
 }
 
-// TODO - stream icosahedron geoJSON features via geojson-stream
 // TODO - validate geoJSON input
 let icosahedron;
 
@@ -21,4 +21,10 @@ try {
 }
 
 
-subdivideMyriahedron(icosahedron, depth).pipe(process.stdout);
+subdivideMyriahedron(icosahedron, depth)
+  .pipe(JSONStream.stringify(
+    '{"type":"FeatureCollection","features":[',
+    ',',
+    ']}'
+  ))
+  .pipe(process.stdout);
