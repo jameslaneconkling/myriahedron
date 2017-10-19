@@ -1,1 +1,1 @@
-module.exports = require('./lib/icosahedron2Myriahedron');
+module.exports = require('./lib/subdivideMyriahedron');

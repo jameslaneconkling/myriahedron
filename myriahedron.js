@@ -1,5 +1,5 @@
 const fs = require('fs');
-const icosahedron2Myriahedron = require('./lib/icosahedron2Myriahedron');
+const subdivideMyriahedron = require('./lib/subdivideMyriahedron');
 
 
 const depth = parseInt(process.argv[2], 10);
@@ -21,4 +21,4 @@ try {
 }
 
 
-icosahedron2Myriahedron(icosahedron, depth).pipe(process.stdout);
+subdivideMyriahedron(icosahedron, depth).pipe(process.stdout);
