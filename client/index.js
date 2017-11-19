@@ -94,6 +94,12 @@ const draw = () => {
   path(myriahedronMesh);
   context.stroke();
 
+  // context.beginPath();
+  // context.lineWidth = 0.5;
+  // context.strokeStyle = '#ccc';
+  // path2(myriahedronMesh);
+  // context.stroke();
+
   // recurse
   setTimeout(() => requestAnimationFrame(draw), 10);
 };

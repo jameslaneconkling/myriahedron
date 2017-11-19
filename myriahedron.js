@@ -1,11 +1,11 @@
 const fs = require('fs');
-const JSONStream = require('JSONStream');
+const geoJsonStream = require('geojson-stream');
 const subdivideMyriahedron = require('./lib/subdivideMyriahedron');
 
 
 const depth = parseInt(process.argv[2], 10);
 if (isNaN(depth) || depth < 1) {
-  console.error('second depth argument must be an integer >= 1');
+  console.error('first argument must be an integer >= 1');
   process.exit(1);
 }
 
@@ -22,9 +22,5 @@ try {
 
 
 subdivideMyriahedron(icosahedron, depth)
-  .pipe(JSONStream.stringify(
-    '{"type":"FeatureCollection","features":[',
-    ',',
-    ']}'
-  ))
+  .pipe(geoJsonStream.stringify())
   .pipe(process.stdout);
