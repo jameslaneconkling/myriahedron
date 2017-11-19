@@ -26,6 +26,7 @@
     "@turf/boolean-disjoint": "^4.7.3",
     "@turf/combine": "^4.7.3",
     "d3-geo-projection": "^2.3.1",
+    "from": "^0.1.7",
     "geojson-stream": "0.0.1",
     "topojson": "^3.0.2",
     "world-atlas": "^1.1.4"
