@@ -12,7 +12,7 @@
     "dev": "budo client/index.js",
     "build": "browserify client/index.js > docs/index.js"
   },
-  "author": "",
+  "author": "James Conkling <james.lane.conkling@gmail.com> jameslaneconkling.github.io",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^14.4.0",
