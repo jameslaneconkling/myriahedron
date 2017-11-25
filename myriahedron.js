@@ -9,11 +9,13 @@ if (isNaN(depth) || depth < 1) {
   process.exit(1);
 }
 
-// TODO - validate geoJSON input
-let icosahedron;
+
+const baseMyriahedronFilePath = process.argv[3] || `${__dirname}/data/myriahedron-1.json`;
+let baseMyriahedron;
+
 
 try {
-  icosahedron = JSON.parse(fs.readFileSync(process.argv[3]));
+  baseMyriahedron = JSON.parse(fs.readFileSync(baseMyriahedronFilePath));
 } catch (e) {
   console.error('error reading or parsing file');
   console.error(e);
@@ -21,6 +23,6 @@ try {
 }
 
 
-subdivideMyriahedron(icosahedron, depth)
+subdivideMyriahedron(baseMyriahedron, depth)
   .pipe(geoJsonStream.stringify())
   .pipe(process.stdout);
