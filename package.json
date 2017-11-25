@@ -22,12 +22,14 @@
     "tape": "^4.8.0"
   },
   "dependencies": {
+    "@turf/area": "^5.0.4",
     "@turf/boolean-contains": "^4.7.3",
     "@turf/boolean-disjoint": "^4.7.3",
     "@turf/combine": "^4.7.3",
     "d3-geo-projection": "^2.3.1",
     "from2": "^2.3.0",
     "geojson-stream": "0.0.1",
+    "polyk": "^0.24.0",
     "topojson": "^3.0.2",
     "world-atlas": "^1.1.4"
   },
