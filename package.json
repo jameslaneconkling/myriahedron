@@ -26,6 +26,7 @@
     "@turf/boolean-contains": "^4.7.3",
     "@turf/boolean-disjoint": "^4.7.3",
     "@turf/combine": "^4.7.3",
+    "@turf/midpoint": "^5.0.4",
     "d3-geo-projection": "^2.3.1",
     "from2": "^2.3.0",
     "geojson-stream": "0.0.1",
